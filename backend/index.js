@@ -6,7 +6,6 @@ import morgan from "morgan";
 import { errorHandler, routeNotFound } from "./middleware/errorMiddleware.js";
 import routes from "./routes/index.js";
 import dbConnection from "./utils/connectDB.js";
-import path from "path";
 
 dotenv.config();
 
@@ -23,11 +22,6 @@ app.use(
     credentials: true,
   })
 );
-
-app.use(express.static(path.join(__dirname, "/interface/build")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "/interface/build/index.html"));
-});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
